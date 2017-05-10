@@ -18,22 +18,32 @@
 			background-color: white;
 	    }
 	    .scms_name_dashboard-display {
-			border-radius: 5px;
+			border-radius: 10px;
 			background-color: lightgrey;
 			padding: 1em;
 			letter-spacing: 0.3ex;
 	    }
 	    .va-related-matter {
-			box-shadow: 0 0 10px rgba(0,0,0,0.5);
+			box-shadow: 0 0 40px rgba(0,0,0,0.5);
+			margin: 40px 60px 0;
 	    }
 	    .related-matter-title {
 			background-color: #3BABC2;
 			color: white;
+			padding: 0.5em;
+	    }
+	    .related-matter-img {
+			height: 1.2em;
+			float: left;
+			margin: 0 0.6em;
 	    }
 	    .hint-arrow {
 			border: 20px solid transparent; 
 			border-left: 20px solid; 
 			border-top: 20px solid; 
+	    }
+	    .scms_heading {
+			font-weight: bold;
 	    }
 	    </style>
 	  </head>
@@ -60,5 +70,22 @@
 		<xsl:value-of select="./para" />
 	</div>
 </xsl:template>
+
+<xsl:template match="//wkdoc:level[@css-class='scms_va-object_sub-class_key-references scms_va-object_area_va-related-matter']">
+	<div class="va-related-matter">
+		<div class="related-matter-title">
+			<img class="related-matter-img" src="related-matter.png"/>
+			<xsl:apply-templates select="./h1" />
+		</div>
+		<xsl:apply-templates select="* except ./h1"/>
+	</div>
+</xsl:template>
+
+<xsl:template match="//h1">
+	<span class="{string(@css-class)}">
+		<xsl:value-of select="." />
+	</span>
+</xsl:template>
+
 
 </xsl:stylesheet>
