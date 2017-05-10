@@ -32,9 +32,16 @@
 			padding: 1em;
 			letter-spacing: 0.3ex;
 	    }
+	    .hint {
+			padding: 20px 30px 0;
+	    }
+	    .hint-arrow {
+			border: 30px solid transparent; 
+			border-left: 30px solid white; 
+			border-top: 0; 
+	    }
 	    .va-related-matter {
-			box-shadow: 0 0 40px rgba(0,0,0,0.5);
-			margin: 40px 60px 0;
+			box-shadow: 0 0 60px rgba(0,0,0,0.7);
 	    }
 	    .related-matter-title {
 			background-color: #3BABC2;
@@ -52,6 +59,7 @@
 	    .related-matter-anchor {
 			font-size: 0.8em;
 			font-weight: bold;
+			margin: 10px 0 30px;
 	    }
 	    .related-matter-anchor-r {
 			background-color: #3BABC2;
@@ -63,11 +71,6 @@
 	    .related-matter-anchor > span {
 			font-size: 0.8em; 
 			color: #3BABC2;
-	    }
-	    .hint-arrow {
-			border: 20px solid transparent; 
-			border-left: 20px solid; 
-			border-top: 20px solid; 
 	    }
 	    .scms_heading {
 			font-weight: bold;
@@ -114,19 +117,23 @@
 </xsl:template>
 
 <xsl:template match="//wkdoc:level[@css-class='scms_va-object_sub-class_key-references scms_va-object_area_va-related-matter']">
-	<div class="va-related-matter">
-		<div class="related-matter-title">
-			<img class="related-matter-img" src="related-matter.png"/>
-			<xsl:apply-templates select="./h1" />
+	<div class="hint">
+		<div class="va-related-matter">
+			<div class="related-matter-title">
+				<img class="related-matter-img" src="related-matter.png"/>
+				<xsl:apply-templates select="./h1" />
+			</div>
+			<div class="related-matter-body">
+				<xsl:apply-templates select="* except ./h1"/>
+			</div>
 		</div>
-		<div class="related-matter-body">
-			<xsl:apply-templates select="* except ./h1"/>
-		</div>
+		<div class="hint-arrow"></div>
 	</div>
 	<div class="related-matter-anchor">
 		<div class="related-matter-anchor-r"><span>R</span></div>
 		<span><xsl:value-of select="./h1"/></span>
 	</div>
+
 </xsl:template>
 
 <xsl:template match="//wkdoc:level[@css-class='scms_div scms_type_historical-explanatory-notes']">
