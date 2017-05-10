@@ -142,6 +142,14 @@
 	</div>
 </xsl:template>
 
+<xsl:template match="//wkdoc:level[@css-class='scms_va-object_sub-class_key-references scms_va-object_area_va-translation-of']">
+	<div class="{string(@css-class)}">
+		<xsl:apply-templates select="./h1"/>
+		<xsl:text>: </xsl:text>
+		<xsl:apply-templates select=".//wklink:cite-ref"/>
+	</div>
+</xsl:template>
+
 <xsl:template match="//h1">
 	<span class="{string(@css-class)}">
 		<xsl:value-of select="." />
