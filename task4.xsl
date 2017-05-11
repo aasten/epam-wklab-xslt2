@@ -34,6 +34,8 @@
 	    }
 	    .hint {
 			padding: 20px 30px 0;
+			min-width: 50%;
+			display: inline-block;
 	    }
 	    .hint-arrow {
 			border: 30px solid transparent; 
@@ -87,6 +89,16 @@
 	    }
 	    .scms_prov-para {
 			padding-left: 30px;
+	    }
+	    pre {
+			text-align: center;
+			font-family: monospace;
+	    }
+	    .where {
+			margin-left: 110px;
+	    }
+	    .scms_type_var {
+			margin-left: 30px;
 	    }
 	    </style>
 	  </head>
@@ -171,6 +183,21 @@
 	</div>
 </xsl:template>
 
+<xsl:template match="//wkdoc:level[contains(@css-class,'scms_type_formula')]">
+	<div class="{string(@css-class)}">
+		<xsl:apply-templates select=".//pre"/>
+		<div class="where">
+			<xsl:apply-templates select="./*[not(pre)]"/>
+		</div>
+	</div>
+</xsl:template>
+
+<xsl:template match="//wkdoc:level[contains(@css-class,'scms_type_var')]">
+	<div class="{string(@css-class)}">
+		<xsl:apply-templates />
+	</div>
+</xsl:template>
+
 <xsl:template match="//italic">
 	<span class="{string(@css-class)}">
 		<xsl:value-of select="."/>
@@ -188,6 +215,13 @@
 		<xsl:value-of select="." />
 	</a>
 </xsl:template>
+
+<xsl:template match="pre">
+	<pre>
+		<xsl:value-of select="."/>
+	</pre>
+</xsl:template>
+
 
 
 </xsl:stylesheet>
