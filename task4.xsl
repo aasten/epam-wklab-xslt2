@@ -79,6 +79,15 @@
 			font-style: oblique;
 			margin: 1em 0;
 	    }
+	    .scms_italic {
+			font-style: oblique;
+	    }
+	    .scms_prov-def {
+			padding-left: 60px;
+	    }
+	    .scms_prov-para {
+			padding-left: 30px;
+	    }
 	    </style>
 	  </head>
 	  <body>
@@ -148,6 +157,24 @@
 		<xsl:text>: </xsl:text>
 		<xsl:apply-templates select=".//wklink:cite-ref"/>
 	</div>
+<!--
+	<div class="enumeration">
+		<xsl:apply-templates select="./following-sibling::*"/>
+	</div>
+-->
+</xsl:template>
+
+
+<xsl:template match="//wkdoc:level[contains(@css-class,'scms_prov-para') or contains(@css-class,'scms_prov-def')]">
+	<div class="{string(@css-class)}">
+		<xsl:apply-templates />
+	</div>
+</xsl:template>
+
+<xsl:template match="//italic">
+	<span class="{string(@css-class)}">
+		<xsl:value-of select="."/>
+	</span>
 </xsl:template>
 
 <xsl:template match="//h1">
